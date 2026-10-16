@@ -1,0 +1,143 @@
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bottom-sheet-up {
+  from {
+    opacity: 0.96;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  animation-name: modal-fade-in;
+  animation-duration: 0.5s;
+  opacity: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > .modal {
+    background-color: var(--light-color);
+    animation-name: modal-fade-in;
+    animation-duration: 0.5s;
+    padding-top: 10px;
+    opacity: 1;
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+
+    .close-button-wrapper {
+      padding: 0 12px;
+      display: flex;
+      justify-content: flex-end;
+      .close-button {
+        position: relative;
+        z-index: 3;
+        width: 18px;
+        height: 18px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        &::before {
+          content: "";
+          width: 2px;
+          height: 100%;
+          background-color: var(--dark-grey-color);
+          position: absolute;
+          transform: rotate(45deg);
+          top: 0;
+          left: 50%;
+        }
+        &::after {
+          content: "";
+          width: 2px;
+          height: 100%;
+          background-color: var(--dark-grey-color);
+          position: absolute;
+          transform: rotate(135deg);
+          top: 0;
+          left: 50%;
+        }
+      }
+    }
+
+    .bottom-sheet-handle {
+      position: relative;
+      width: 100%;
+      height: 28px;
+      margin: -2px auto 0;
+      cursor: grab;
+      touch-action: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        width: 42px;
+        height: 5px;
+        border-radius: 999px;
+        background-color: rgba(40, 44, 52, 0.18);
+        transform: translateX(-50%);
+      }
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    .header {
+      padding: 0 12px 10px;
+      background-color: var(--light-color);
+      z-index: 7;
+    }
+    .content {
+      padding: 0 16px;
+      max-height: 80vh;
+      overflow: auto;
+    }
+  }
+}
+
+.contact-modal-background {
+  align-items: flex-end;
+  padding: 0 16px;
+
+  > .contact-modal {
+    width: min(100%, 486px);
+    max-height: min(82vh, calc(100dvh - 48px));
+    padding-top: 10px;
+    border-radius: 20px 20px 0 0;
+    animation-name: bottom-sheet-up;
+    animation-duration: 0.34s;
+    animation-timing-function: ease-out;
+
+    > .content {
+      max-height: calc(82vh - 144px);
+    }
+  }
+}
+
+.all-photo-modal-background {
+  background-color: rgba(0, 0, 0, 0.88);
+  align-items: center;
+  padding: 0;
+}

@@ -1,0 +1,404 @@
+$gallery-width: min(100%, 420px);
+$gallery-height: 390px;
+$transition-duration: 0.3s;
+
+@keyframes moving-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc($gallery-width - 100%));
+  }
+}
+
+@keyframes gallery-slide-next {
+  from {
+    transform: translateX(18px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gallery-slide-prev {
+  from {
+    transform: translateX(-18px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gallery-side-dim-fade {
+  from {
+    opacity: 0.95;
+  }
+  to {
+    opacity: 0.62;
+  }
+}
+
+@media (max-width: 360px) {
+  .gallery {
+    .carousel-wrapper {
+      .carousel {
+        .carousel-list {
+          .carousel-item {
+            height: 420px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.gallery {
+  button.button.button-style-1 {
+    display: none;
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .carousel {
+      width: $gallery-width;
+      height: $gallery-height;
+      overflow: hidden;
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .gallery-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        will-change: opacity, transform;
+      }
+
+      .gallery-stage.motion-next {
+        animation: gallery-slide-next 0.48s ease forwards;
+      }
+
+      .gallery-stage.motion-prev {
+        animation: gallery-slide-prev 0.48s ease forwards;
+      }
+
+      .gallery-main,
+      .gallery-side {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        overflow: hidden;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          pointer-events: none;
+        }
+      }
+
+      .gallery-main {
+        left: 50%;
+        z-index: 2;
+        width: 64%;
+        transform: translateX(-50%);
+        border-radius: 999px 999px 0 0;
+        box-shadow: 0 14px 26px rgba(87, 65, 59, 0.1);
+
+        .gallery-main-button {
+          width: 100%;
+          height: 100%;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          cursor: pointer;
+        }
+      }
+
+      .gallery-side {
+        z-index: 1;
+        width: 36%;
+        filter: saturate(0.78) brightness(1.08);
+        border-radius: 999px 999px 0 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background-color: rgba(255, 255, 255, 0.62);
+          pointer-events: none;
+          animation: gallery-side-dim-fade 0.9s ease-out forwards;
+        }
+      }
+
+      .gallery-side.left {
+        left: calc(-18% - 12px);
+      }
+
+      .gallery-side.right {
+        right: calc(-18% - 12px);
+      }
+
+      .carousel-list {
+        display: none;
+        width: fit-content;
+        justify-content: center;
+
+        &.transitioning {
+          transition: $transition-duration ease-out;
+        }
+
+        &.moving-left {
+          animation-name: moving-right;
+          animation-duration: $transition-duration;
+          animation-fill-mode: forwards;
+          animation-direction: reverse;
+        }
+
+        &.moving-right {
+          animation-name: moving-right;
+          animation-duration: $transition-duration;
+          animation-fill-mode: forwards;
+        }
+
+        .carousel-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: $gallery-width;
+          height: $gallery-height;
+          padding-left: 0;
+          padding-right: 0;
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+
+      .carousel-control {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+
+        .control {
+          height: 100%;
+          width: 30%;
+          display: flex;
+          align-items: center;
+          border: 0;
+          background: transparent;
+          cursor: pointer;
+          pointer-events: auto;
+          &.left {
+            justify-content: flex-start;
+          }
+          &.right {
+            justify-content: flex-end;
+          }
+
+          .arrow {
+            width: 32px;
+            &.right {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+
+    .carousel-indicator {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        padding: 3px;
+        &::before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: var(--dark-grey-color);
+        }
+        position: relative;
+        z-index: 3;
+
+        &.active {
+          &::before {
+            background-color: var(--theme-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+.all-photo-modal {
+  width: min(100vw, 486px);
+  background-color: #070707 !important;
+  padding-top: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  .header {
+    display: none;
+
+    .title {
+      text-align: center;
+      font-size: 18px;
+      color: var(--theme-color);
+      padding-bottom: 14px;
+    }
+  }
+
+  .content {
+    padding: 0;
+    height: 80vh;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .photo-viewer {
+      position: relative;
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+      background-color: #070707;
+
+      .photo-viewer-image-wrap {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .photo-viewer-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.34);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      svg,
+      svg * {
+        width: 24px;
+        height: 24px;
+        color: var(--white-color);
+        stroke: currentColor;
+      }
+    }
+
+    .photo-viewer-control {
+      position: absolute;
+      top: 0;
+      z-index: 2;
+      width: 34%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &.left {
+        left: 0;
+        justify-content: flex-start;
+        margin-left: 4px;
+      }
+
+      &.right {
+        right: 0;
+        justify-content: flex-end;
+        margin-right: 4px;
+      }
+
+      .arrow {
+        width: 38px;
+        height: 38px;
+        padding: 9px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.32);
+        backdrop-filter: blur(4px);
+        color: var(--white-color);
+        opacity: 0.9;
+
+        &.right {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .photo-viewer-indicator {
+      display: flex;
+      justify-content: center;
+      flex: 0 0 auto;
+      margin-top: 12px;
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        padding: 3px;
+
+        &::before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.38);
+        }
+
+        &.active::before {
+          background-color: var(--white-color);
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: none;
+    flex-direction: column;
+
+    button {
+      font-size: 15px;
+    }
+  }
+
+}

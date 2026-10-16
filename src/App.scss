@@ -1,0 +1,241 @@
+@use "./component/cover";
+@use "./component/invitation";
+@use "./component/button";
+@use "./component/bgEffect";
+@use "./component/calendar";
+@use "./component/gallery";
+@use "./component/location";
+@use "./component/information";
+@use "./component/guestbook";
+@use "./component/modal";
+@use "./component/shareButton";
+@use "./component/intro";
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap");
+
+@font-face {
+  font-family: "JejuMyeongjo";
+  src: url("./font/JEJUMYEONGJO.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --theme-color: #d88686;
+  --theme-bg-color: #f7f3f1;
+  --alt-color: #b98580;
+  --alt-bg-color: #efe6e3;
+  --dark-color: #282c34;
+  --dark-grey-color: #cfc5c1;
+  --light-grey-color: #e7dfdc;
+  --light-color: #fbf8f6;
+  --white-color: #fffdfb;
+  --red-color: #ff0000;
+  --point-text-color: #a89b95;
+  --section-gap: 42px;
+  --card-radius: 12px;
+  --card-border-color: rgba(185, 133, 128, 0.2);
+  --card-shadow: 0 12px 30px rgba(87, 65, 59, 0.09);
+
+  font-family: "JejuMyeongjo", serif;
+  font-size: 20px;
+}
+
+@media print {
+  body {
+    print-color-adjust: exact;
+  }
+}
+
+$colors: (
+  theme-color: var(--theme-color),
+  theme-bg-color: var(--theme-bg-color),
+  alt-color: var(--alt-color),
+  alt-bg-color: var(--alt-bg-color),
+  dark-color: var(--dark-color),
+  dark-grey-color: var(--dark-grey-color),
+  light-grey-color: var(--light-grey-color),
+  light-color: var(--light-color),
+  white-color: var(--white-color),
+  red-color: var(--red-color),
+  point-text-color: var(--point-text-color),
+);
+
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color !important;
+  }
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .border-#{$name} {
+    border-color: $color !important;
+  }
+}
+
+@keyframes lazy-fade-in {
+  from {
+    opacity: 0;
+    z-index: 3;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    z-index: 3;
+    transform: translateY(0);
+  }
+}
+
+button {
+  font-family: "JejuMyeongjo", serif;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  &.modal-open {
+    overflow-y: hidden;
+  }
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--dark-color);
+  user-select: none;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.background {
+  background-color: #3a3a3a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 100%;
+
+  .card-view {
+    width: 100%;
+    max-width: 486px;
+    min-height: 100vh;
+    background-color: var(--theme-bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+    text-align: center;
+
+    .card-group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+
+      .card {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 253, 251, 0.96),
+            rgba(251, 248, 246, 0.98)
+          ),
+          var(--white-color);
+        padding: 26px 20px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--card-border-color);
+        box-shadow: var(--card-shadow);
+        margin: 0 16px;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        opacity: 0;
+
+        &.lazy-active {
+          animation-name: lazy-fade-in;
+          animation-duration: 3s;
+          opacity: 1;
+        }
+
+        @media print {
+          opacity: 1;
+          animation-name: inherit !important;
+          animation-duration: inherit !important;
+        }
+      }
+    }
+
+    .footer {
+      position: relative;
+      margin: 0 16px 16px;
+      opacity: 0;
+      padding: 18px;
+      opacity: 0;
+      &.lazy-active {
+        animation-name: lazy-fade-in;
+        animation-duration: 3s;
+        opacity: 1;
+      }
+
+      @media print {
+        opacity: 1;
+        animation-name: inherit !important;
+        animation-duration: inherit !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --section-gap: 34px;
+  }
+
+  .background {
+    .card-view {
+      .card-group {
+        .card {
+          margin: 0 12px;
+          padding: 22px 16px;
+        }
+      }
+
+      .footer {
+        margin: 0 12px 12px;
+        padding: 16px;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  color: var(--theme-color);
+  font-weight: normal;
+  &.english {
+    font-family: "Lora", serif;
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+
+div.break {
+  height: 12px;
+}

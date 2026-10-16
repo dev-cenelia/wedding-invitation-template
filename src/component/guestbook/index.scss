@@ -1,0 +1,318 @@
+.guestbook,
+.guestbook-list-modal {
+  .post {
+    text-align: left;
+    box-shadow: 0 4px 14px rgba(40, 44, 52, 0.08);
+    background-color: var(--white-color);
+    border-radius: 10px;
+    border: 1px solid var(--light-grey-color);
+    font-size: 16px;
+    margin-top: 4px;
+
+    .heading {
+      margin: 10px;
+      display: flex;
+      justify-content: flex-end;
+      .close-button {
+        position: relative;
+        z-index: 3;
+        width: 14px;
+        height: 14px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        &::before {
+          content: "";
+          width: 2px;
+          height: 100%;
+          background-color: var(--dark-grey-color);
+          position: absolute;
+          transform: rotate(45deg);
+          top: 0;
+          left: 50%;
+        }
+        &::after {
+          content: "";
+          width: 2px;
+          height: 100%;
+          background-color: var(--dark-grey-color);
+          position: absolute;
+          transform: rotate(135deg);
+          top: 0;
+          left: 50%;
+        }
+      }
+    }
+
+    .body {
+      margin: 0 20px 20px;
+      font-family: "Noto Sans KR", sans-serif;
+      font-size: 14px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        .name {
+          margin-right: 8px;
+          font-family: "Noto Sans KR", sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .date {
+          font-size: 14px;
+          opacity: 0.5;
+          font-family: "Noto Sans KR", sans-serif;
+          font-weight: 400;
+        }
+        margin-bottom: 12px;
+      }
+      .content {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.guestbook {
+  .guestbook-write-inline {
+    margin: 0;
+    text-align: left;
+
+    .form {
+      .header {
+        display: none;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 0;
+        color: var(--dark-color);
+        font-size: 16px;
+
+        label {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          min-width: 0;
+          font-family: "Noto Sans KR", sans-serif;
+          font-size: 14px;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 8px;
+          border: 1px solid transparent;
+          border-radius: 4px;
+          background-color: var(--white-color);
+          box-shadow: 0 6px 16px rgba(40, 44, 52, 0.08);
+          font-family: "Noto Sans KR", sans-serif;
+          font-size: 14px;
+          outline: none;
+
+          &::placeholder {
+            font-size: 13px;
+          }
+
+          &:focus {
+            border-color: var(--theme-color);
+          }
+        }
+
+        .inline-fields {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+
+          input {
+            margin-bottom: 0;
+          }
+        }
+
+        textarea {
+          min-height: 92px;
+          resize: vertical;
+        }
+      }
+
+      .footer {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        opacity: 1;
+        animation: none;
+
+        button {
+          width: 100%;
+          min-height: 44px;
+          background-color: #f1e8e6;
+          color: var(--dark-color);
+          box-shadow: 0 6px 14px rgba(87, 65, 59, 0.08);
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+.write-guestbook-modal {
+  width: min(92vw, 360px);
+
+  .form {
+    .header {
+      .title-group {
+        text-align: center;
+        .title {
+          font-size: 18px;
+          color: var(--theme-color);
+          padding: 10px;
+        }
+        .subtitle {
+          font-size: 14px;
+          line-height: 1.6;
+          opacity: 0.72;
+        }
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--dark-grey-color);
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      margin-top: 16px;
+
+      padding: 0 12px 12px;
+
+      input {
+        padding: 10px;
+        margin-bottom: 8px;
+        border: 1px solid var(--light-grey-color);
+        border-radius: 6px;
+        font-family: "JejuMyeongjo", serif;
+        font-size: 15px;
+      }
+
+      textarea {
+        padding: 10px;
+        margin-bottom: 8px;
+        border: 1px solid var(--light-grey-color);
+        border-radius: 6px;
+        font-family: "JejuMyeongjo", serif;
+        font-size: 15px;
+      }
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: row;
+      button {
+        width: 100%;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.guestbook-list-modal {
+  width: min(92vw, 390px);
+
+  .header {
+    > .title {
+      text-align: center;
+      font-size: 18px;
+      color: var(--theme-color);
+      padding-bottom: 14px;
+    }
+  }
+
+  > .content {
+    padding: 0 0 12px;
+
+    .post {
+      .body {
+        > .content {
+          padding: 0;
+        }
+      }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+      margin-bottom: 20px;
+      .page {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        padding: 0;
+        margin: 0 3px;
+        border: 0;
+        border-radius: 50%;
+        background-color: #f1e8e6;
+        box-shadow: 0 6px 14px rgba(87, 65, 59, 0.08);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &.current {
+          background-color: var(--theme-color);
+          color: var(--white-color);
+          box-shadow: 0 8px 18px rgba(216, 134, 134, 0.22);
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      font-size: 15px;
+    }
+  }
+}
+
+.delete-guestbook-modal {
+  width: min(92vw, 360px);
+
+  .form {
+    .header {
+      .title {
+        text-align: center;
+        font-size: 18px;
+        color: var(--theme-color);
+      }
+    }
+    .content {
+      padding: 0 12px 12px;
+      display: flex;
+      flex-direction: column;
+      margin-top: 16px;
+
+      input {
+        padding: 10px;
+        margin-bottom: 8px;
+        border: 1px solid var(--light-grey-color);
+        border-radius: 6px;
+        font-family: "JejuMyeongjo", serif;
+        font-size: 15px;
+      }
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: row;
+      button {
+        width: 100%;
+        font-size: 15px;
+      }
+    }
+  }
+}

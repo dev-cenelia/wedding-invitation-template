@@ -1,0 +1,208 @@
+.invitation {
+  .content {
+    // margin-top: 14px;
+    // margin-bottom: 14px;
+    font-size: 15px;
+    line-height: 2.05;
+  }
+
+  .name {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-size: 18px;
+
+    .deceased-mark {
+      font-family:
+        "Noto Serif CJK KR",
+        "Noto Serif KR",
+        "Malgun Gothic",
+        "Apple SD Gothic Neo",
+        serif;
+      font-size: 13px;
+    }
+
+    .relation {
+      font-size: 15px;
+      opacity: 0.7;
+
+      .relation-name {
+        display: inline-block;
+        min-width: 32px;
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .invitation {
+    .content {
+      line-height: 1.95;
+    }
+
+    .name {
+      font-size: 18px;
+    }
+  }
+
+  .contact-modal {
+    .content {
+      .contact-info {
+        .contact-row {
+          padding: 12px 10px;
+        }
+      }
+    }
+  }
+}
+
+.contact-modal {
+  width: calc(100% - 16px);
+
+  .header {
+    padding: 0 20px 12px;
+
+    .title-group {
+      text-align: center;
+
+      .title {
+        font-size: 18px;
+        color: var(--dark-color);
+        padding: 4px 0 6px;
+      }
+
+      .subtitle {
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 13px;
+        line-height: 1.55;
+        color: rgba(40, 44, 52, 0.56);
+      }
+    }
+  }
+
+  .content {
+    padding: 0 20px 30px;
+
+    .contact-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--light-grey-color);
+
+      button {
+        min-height: 42px;
+        border-bottom: 2px solid transparent;
+        background-color: transparent;
+        color: var(--dark-color);
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        cursor: pointer;
+        transition:
+          color 0.22s ease,
+          border-color 0.22s ease;
+
+        &.active {
+          border-bottom-color: var(--theme-color);
+          color: var(--dark-color);
+          box-shadow: none;
+        }
+
+        &.active:has(.tab-icon.groom) {
+          border-bottom-color: #8fb8d8;
+          color: var(--dark-color);
+        }
+
+        .tab-icon {
+          width: 15px;
+          height: 15px;
+          color: rgba(40, 44, 52, 0.34);
+
+          * {
+            color: inherit;
+            fill: currentColor;
+          }
+        }
+
+        &.active {
+          .tab-icon.groom {
+            color: #8fb8d8;
+            fill: #8fb8d8;
+          }
+
+          .tab-icon.bride {
+            color: var(--theme-color);
+            fill: var(--theme-color);
+          }
+        }
+      }
+    }
+
+    .contact-info {
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 10px;
+      font-family: "Noto Sans KR", sans-serif;
+
+      .contact-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        min-height: 58px;
+        padding: 13px 12px;
+        border-radius: 8px;
+        background-color: rgba(255, 253, 251, 0.72);
+        box-shadow: 0 6px 16px rgba(87, 65, 59, 0.07);
+      }
+
+      .contact-person {
+        min-width: 0;
+        text-align: left;
+      }
+
+      .relation {
+        margin-bottom: 3px;
+        color: rgba(40, 44, 52, 0.5);
+        font-size: 12px;
+      }
+
+      .name {
+        color: var(--dark-color);
+        font-size: 15px;
+      }
+
+      .contact-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+
+        button {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          background-color: #f1e8e6;
+          box-shadow: 0 6px 14px rgba(87, 65, 59, 0.08);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .icon {
+        color: var(--dark-color);
+        opacity: 0.72;
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+}

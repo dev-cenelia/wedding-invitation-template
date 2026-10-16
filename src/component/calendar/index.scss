@@ -1,0 +1,131 @@
+.calendar {
+  .calendar-date-label {
+    color: var(--dark-color);
+    font-size: 16px;
+    opacity: 0.72;
+  }
+
+  .calendar-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px 4px;
+    width: min(100%, 312px);
+    margin: 18px auto 24px;
+    padding: 16px 12px;
+    border: 1px solid rgba(185, 133, 128, 0.24);
+    border-radius: 18px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 249, 249, 0.96)),
+      var(--light-color);
+    box-shadow: 0 10px 26px rgba(87, 65, 59, 0.08);
+
+    > div {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      color: var(--dark-color);
+      font-size: 16px;
+
+      &.head {
+        min-height: 24px;
+        color: var(--point-text-color);
+        font-family: "JejuMyeongjo", serif;
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+
+      &.holiday > span {
+        color: var(--alt-color);
+      }
+
+      &.wedding-date {
+        > span {
+          z-index: 2;
+          color: var(--white-color);
+          font-weight: 600;
+        }
+
+        > div.heart {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: 1;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: var(--point-text-color);
+          box-shadow: 0 8px 18px rgba(168, 155, 149, 0.32);
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+
+  .countdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .countdown {
+      display: grid;
+      grid-template-columns: 1fr 12px 1fr 12px 1fr 12px 1fr;
+      align-items: center;
+      width: min(100%, 300px);
+      padding: 14px 12px;
+      border-radius: 16px;
+      background-color: rgba(185, 133, 128, 0.08);
+
+      * {
+        margin: 0;
+      }
+
+      .count {
+        color: var(--dark-color);
+        font-family: "JejuMyeongjo", serif;
+        font-size: 22px;
+        font-weight: 400;
+      }
+
+      .unit {
+        color: var(--point-text-color);
+        font-family: "JejuMyeongjo", serif;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+
+    .message {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.65;
+
+      .d-day {
+        color: var(--alt-color);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .calendar {
+    .calendar-wrapper {
+      gap: 7px 3px;
+      padding: 14px 10px;
+    }
+
+    .countdown-wrapper {
+      .countdown {
+        grid-template-columns: 1fr 8px 1fr 8px 1fr 8px 1fr;
+        padding: 12px 8px;
+
+        .count {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.bg-effect {
+  @media print {
+    display: none;
+  }
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.9;
+
+  .heart-particle {
+    position: absolute;
+    bottom: -48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #f6b7c8;
+    filter: drop-shadow(0 4px 10px rgba(246, 183, 200, 0.18));
+    animation-name: heart-float;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+
+    &-pink {
+      color: #f6b7c8;
+      filter: drop-shadow(0 4px 10px rgba(246, 183, 200, 0.18));
+    }
+
+    &-white {
+      color: var(--white-color);
+      filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.22));
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      color: currentColor;
+      fill: currentColor;
+    }
+
+    svg * {
+      color: inherit;
+    }
+  }
+}
+
+@keyframes heart-float {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-8deg) scale(0.92);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: var(--heart-opacity);
+  }
+
+  50% {
+    transform: translate3d(calc(var(--heart-drift) * 0.45), -50vh, 0)
+      rotate(8deg) scale(1);
+  }
+
+  88% {
+    opacity: var(--heart-opacity);
+  }
+
+  100% {
+    transform: translate3d(var(--heart-drift), -108vh, 0) rotate(-10deg)
+      scale(0.96);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-effect {
+    display: block;
+
+    .heart-particle {
+      animation-duration: 24s;
+    }
+  }
+}
