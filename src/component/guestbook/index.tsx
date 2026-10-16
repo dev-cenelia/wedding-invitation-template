@@ -53,27 +53,27 @@ export const GuestBook = () => {
    * 서버 또는 로컬 파일에서 방명록 게시물을 불러옵니다.
    */
   const loadPosts = async () => {
-  const { data, error, count } = await supabase
-    .from("guestbook")
-    .select("id, name, message, created_at", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .limit(3)
+    const { data, error, count } = await supabase
+      .from("guestbook")
+      .select("id, name, message, created_at", { count: "exact" })
+      .order("created_at", { ascending: false })
+      .limit(3)
 
-  if (error) {
-    console.error(error)
-    return
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    setPosts(
+      data.map((item) => ({
+        id: item.id,
+        name: item.name,
+        content: item.message,
+        timestamp: dayjs(item.created_at).unix(),
+      })),
+    )
+    setTotalCount(count ?? 0)
   }
-
-  setPosts(
-    data.map((item) => ({
-      id: item.id,
-      name: item.name,
-      content: item.message,
-      timestamp: dayjs(item.created_at).unix(),
-    })),
-  )
-  setTotalCount(count ?? 0)
-}
 
   useEffect(() => {
     loadPosts()
@@ -136,9 +136,7 @@ export const GuestBook = () => {
         className="guestbook-list-modal"
         closeOnClickBackground={true}
       >
-        <GuestBookListModal
-          loadPosts={loadPosts}
-        />
+        <GuestBookListModal loadPosts={loadPosts} />
       </Modal>
 
       {/* 방명록 삭제 모달 */}
@@ -233,7 +231,7 @@ const WriteGuestBookModal = ({
           inputRef.current.password.value = ""
           onClose?.()
           loadPosts()
-        } catch (error){
+        } catch (error) {
           console.error("방명록 작성 실패:", error)
           alert("방명록 작성에 실패했습니다.")
         } finally {
