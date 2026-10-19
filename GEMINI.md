@@ -46,6 +46,8 @@ The project uses the following environment variables (defined in `.env`):
 - `VITE_SERVER_URL`: URL for the guestbook/attendance backend.
 - `VITE_STATIC_ONLY`: Set to `true` to disable backend-dependent features (Guestbook, Attendance).
 
+For Naver Maps, register each local development and deployed site origin in the Naver Cloud Platform application's Web service URL settings. The origin must match the address used to open the site, including its port when applicable (for example, `http://localhost:5173`). Keep `.env` out of version control and never expose API secrets in frontend variables.
+
 ---
 
 ## Coding Conventions & Guidelines
