@@ -10,7 +10,6 @@ import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 import { ShareButton } from "./component/shareButton"
 import { STATIC_ONLY } from "./env"
-import { Intro } from "./component/intro"
 
 /**
  * 메인 애플리케이션 컴포넌트입니다.
@@ -21,7 +20,6 @@ import { Intro } from "./component/intro"
 function App() {
   return (
     <div className="background">
-      <Intro />
       {/* 배경 애니메이션 효과 (예: 꽃잎 내리기) */}
       <BGEffect />
       <div className="card-view">

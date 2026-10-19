@@ -12,7 +12,6 @@ import image6 from "./image_6.webp"
 export const COVER_IMAGE = coverImage
 
 export const COVER_IMAGES = [
-  "/intro_poster_img.webp",
   coverImage,
   image2,
   image3,
