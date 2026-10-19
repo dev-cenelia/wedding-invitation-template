@@ -11,22 +11,9 @@ import image6 from "./image_6.webp"
  */
 export const COVER_IMAGE = coverImage
 
-export const COVER_IMAGES = [
-  coverImage,
-  image2,
-  image3,
-  image4,
-  image5,
-]
+export const COVER_IMAGES = [coverImage, image2, image3, image4, image5]
 
 /**
  * 갤러리에 표시될 이미지 목록
  */
-export const GALLERY_IMAGES = [
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  image6,
-]
+export const GALLERY_IMAGES = [image1, image2, image3, image4, image5, image6]
