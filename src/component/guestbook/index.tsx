@@ -4,6 +4,7 @@ import { dayjs } from "../../const"
 import { LazyDiv } from "../lazyDiv"
 import { Modal } from "../modal"
 import { supabase } from "../../lib/supabase"
+import { SERVER_URL } from "../../env"
 
 /**
  * 방명록 입력 규칙 설정

@@ -1,0 +1,46 @@
+.background-music {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  right: max(14px, calc((100vw - 486px) / 2 + 14px));
+  z-index: 10;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 0 13px;
+    border: 1px solid var(--card-border-color);
+    border-radius: 24px;
+    background: var(--white-color);
+    box-shadow: var(--card-shadow);
+    font-size: 17px;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--alt-color);
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+  }
+
+  .music-status:not(:empty) {
+    display: block;
+    max-width: 220px;
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--white-color);
+    box-shadow: var(--card-shadow);
+    font-size: 13px;
+  }
+
+  @media print {
+    display: none;
+  }
+}
